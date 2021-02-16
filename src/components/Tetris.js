@@ -2,10 +2,10 @@ import React, { useState } from "react";
 
 import { createStage } from "../gameHelpers";
 
-// Styled components
+// Styled Components
 import { StyledTetrisWrapper, StyledTetris } from "./styles/StyledTetris";
 
-// Custom hooks
+// Custom Hooks
 import { usePlayer } from "../hooks/usePlayer";
 import { useStage } from "../hooks/useStage";
 
@@ -18,17 +18,18 @@ const Tetris = () => {
   const [dropTime, setDropTime] = useState(null);
   const [gameOver, setGameOver] = useState(false);
 
-  const [player] = usePlayer();
+  const [player, updatePlayerPos, resetPlayer] = usePlayer();
   const [stage, setStage] = useStage(player);
 
-  console.log("re-render stage");
+  console.log("re-render");
 
   const movePlayer = (dir) => {
     updatePlayerPos({ x: dir, y: 0 });
   };
 
   const startGame = () => {
-    //reset everything
+    console.log("test");
+    // Reset everything
     setStage(createStage());
     resetPlayer();
   };
@@ -67,7 +68,7 @@ const Tetris = () => {
               <Display text="Level" />
             </div>
           )}
-          <StartButton onClick={startGame} />
+          <StartButton callback={startGame} />
         </aside>
       </StyledTetris>
     </StyledTetrisWrapper>
